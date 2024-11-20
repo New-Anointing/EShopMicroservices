@@ -1,7 +1,7 @@
 namespace CatalogAPI.Products.CreateProduct;
 
 //request sent from the http client
-public record CreateProductCommand(string Name,List<string> Category, string Description, string ImageFile,decimal Price)
+public abstract record CreateProductCommand(string Name,List<string> Category, string Description, string ImageFile,decimal Price)
     : ICommand<CreateProductResult>;
 
 //response returned back
