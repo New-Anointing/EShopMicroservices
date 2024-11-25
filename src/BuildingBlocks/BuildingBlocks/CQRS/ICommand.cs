@@ -6,7 +6,7 @@ namespace BuildingBlocks.CQRS;
 public interface ICommand : ICommand<Unit>{}
 
 //ICommand interface overload that has a generic return type of TResponse
-public interface ICommand<out TResponse> : IRequest<TResponse>
+public interface ICommand<out TResult> : IRequest<TResult>
 {
     
 }

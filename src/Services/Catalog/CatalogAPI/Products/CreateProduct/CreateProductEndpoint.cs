@@ -1,13 +1,13 @@
 namespace CatalogAPI.Products.CreateProduct;
 
-public abstract record CreateProductRequest(
+public record CreateProductRequest(
     string Name,
     List<string> Category,
     string Description,
     string ImageFile,
     decimal Price);
 
-public abstract record CreateProductResponse(Guid Id);
+public record CreateProductResponse(Guid Id);
 
 public class CreateProductEndpoint : ICarterModule
 {

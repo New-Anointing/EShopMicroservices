@@ -11,9 +11,9 @@ public interface ICommandHandler<in TCommand> : ICommandHandler<TCommand, Unit>
 }
 
 //ICommandHandler overload that takes in a request and returns a response
-public interface ICommandHandler<in TCommand, TResponse> : IRequestHandler<TCommand, TResponse> 
-    where TCommand : ICommand<TResponse>
-    where TResponse : notnull
+public interface ICommandHandler<in TCommand, TResult> : IRequestHandler<TCommand, TResult> 
+    where TCommand : ICommand<TResult>
+    where TResult : notnull
 {
     
 }
