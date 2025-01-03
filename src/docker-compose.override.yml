@@ -9,7 +9,18 @@ services:
     ports:
         - "5432:5432"
     volumes:
-        - postgres_catalog:/var/lib/postgresql/data/  
+        - postgres_catalog:/var/lib/postgresql/data/ 
+  basketDb:
+    container_name: basketDb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=BasketDb
+    restart:  always
+    ports:
+        - "5433:5432"
+    volumes:
+        - postgres_basket:/var/lib/postgresql/data/  
   catalogapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
