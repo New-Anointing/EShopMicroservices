@@ -1,9 +1,12 @@
 using BuildingBlocks.Exceptions.Handler;
+using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 //Add services to container
+
+//Application services
 var assembly = typeof(Program).Assembly;
 var connectionString = builder.Configuration.GetConnectionString("Database")!;
 var redisConnectionString = builder.Configuration.GetConnectionString("Redis")!;
@@ -13,18 +16,29 @@ builder.Services.AddMediatR(options =>
     options.AddOpenBehavior(typeof(ValidationBehaviors<,>));
     options.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
+builder.Services.AddCarter();
+
+//Data Services / Infrastructure services
 builder.Services.AddMarten(options =>
 {
     options.Connection(connectionString);
     options.Schema.For<ShoppingCart>().Identity(x => x.UserName);
 }).UseLightweightSessions();
-builder.Services.AddCarter();
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = redisConnectionString;
 });
+
+//gRPC Services
+var gRPCUri = builder.Configuration["GrpcSettings:DiscountUrl"];
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+{
+    options.Address = new Uri(gRPCUri!);
+});
+
+//Cross-cutting Services
 builder.Services.AddValidatorsFromAssembly(assembly);
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
