@@ -2,6 +2,7 @@ using BuildingBlocks.Exceptions.Handler;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 //Add services to container
@@ -36,6 +37,15 @@ var gRPCUri = builder.Configuration["GrpcSettings:DiscountUrl"];
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
 {
     options.Address = new Uri(gRPCUri!);
+})
+.ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback =
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+    return handler;
 });
 
 //Cross-cutting Services
