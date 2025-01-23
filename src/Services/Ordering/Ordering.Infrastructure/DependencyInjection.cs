@@ -14,11 +14,11 @@ namespace Ordering.Infrastructure
         {
             string? connectionString = configuration.GetConnectionString("Database");
             //Add Service to the container
-            //services.AddDbContext<ApiDbContext>(options =>
+            //services.AddDbContext<ApplicationDbContext>(options =>
             //{
             //    options.UseSqlServer(connectionString);
             //});
-            //services.AddScoped<IApiDbContext>(sp => sp.GetRequiredService<ApiDbContext>());
+            //services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
             return services;
         }
     }

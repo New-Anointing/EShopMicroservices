@@ -1,6 +1,4 @@
-﻿
-
-namespace Ordering.Domain.Models
+﻿namespace Ordering.Domain.Models.Customers
 {
     public class Customer : Entity<CustomerId>
     {

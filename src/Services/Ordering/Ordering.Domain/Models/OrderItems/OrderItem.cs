@@ -1,4 +1,4 @@
-﻿namespace Ordering.Domain.Models
+﻿namespace Ordering.Domain.Models.OrderItems
 {
     public class OrderItem : Entity<OrderItemId>
     {
