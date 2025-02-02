@@ -29,6 +29,7 @@ namespace Ordering.Domain.Models.Orders
                 ShippingAddress = shippingAddress,
                 BillingAddress = billingAddress,
                 Status = OrderStatus.Pending,
+                Payment = payment
             };
 
             order.AddDomainEvent(new OrderCreatedEvent(order));

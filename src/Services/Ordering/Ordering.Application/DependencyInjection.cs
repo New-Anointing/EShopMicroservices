@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BuildingBlocks.Behaviors;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace Ordering.Application
@@ -11,6 +12,8 @@ namespace Ordering.Application
             services.AddMediatR(options =>
             {
                 options.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                options.AddOpenBehavior(typeof(ValidationBehaviors<,>));
+                options.AddOpenBehavior(typeof(ValidationBehaviors<,>));
             });
 
             return services;

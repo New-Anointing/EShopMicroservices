@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Ordering.Domain.Models.Products;
 using Ordering.Domain.ValueObjects;
 
-namespace Ordering.Infrastructure.Configurations.Products
+namespace Ordering.Infrastructure.Database.Configurations.Products
 {
     public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
@@ -14,7 +14,7 @@ namespace Ordering.Infrastructure.Configurations.Products
                 productId => productId.Value,
                 dbId => ProductId.Of(dbId));
 
-            builder.Property(p => p.Name).HasMaxLength(255).IsRequired();
+            builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
         }
     }
 }

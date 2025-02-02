@@ -1,0 +1,10 @@
+﻿global using BuildingBlocks.CQRS;
+global using Ordering.Application.Data;
+global using Ordering.Application.Dtos;
+global using Ordering.Domain.Models.Orders;
+global using Ordering.Domain.ValueObjects;
+global using FluentValidation;
+global using Ordering.Domain.Models.Customers;
+global using Ordering.Domain.Models.OrderItems;
+global using Ordering.Domain.Models.Products;
+global using Ordering.Application.Exceptions;

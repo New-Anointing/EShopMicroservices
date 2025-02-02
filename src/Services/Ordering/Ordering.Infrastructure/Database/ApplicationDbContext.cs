@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Ordering.Application.Data;
 using Ordering.Domain.Models.Customers;
 using Ordering.Domain.Models.OrderItems;
 using Ordering.Domain.Models.Orders;
@@ -10,10 +11,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ordering.Infrastructure
+namespace Ordering.Infrastructure.Database
 {
     public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
-        : DbContext(options)
+        : DbContext(options) , IApplicationDbContext
     {
         public DbSet<Customer> Customers => Set<Customer>();
         public DbSet<Order> Orders => Set<Order>();
