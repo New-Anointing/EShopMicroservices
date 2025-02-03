@@ -8,3 +8,8 @@ global using Ordering.Domain.Models.Customers;
 global using Ordering.Domain.Models.OrderItems;
 global using Ordering.Domain.Models.Products;
 global using Ordering.Application.Exceptions;
+global using MediatR;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.EntityFrameworkCore;
+global using Ordering.Application.Extentions;
+global using BuildingBlocks.Pagination;
