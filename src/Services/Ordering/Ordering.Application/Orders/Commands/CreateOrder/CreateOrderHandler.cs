@@ -35,10 +35,10 @@
                 orderDto.Payment.CardName,
                 orderDto.Payment.CardNumber,
                 orderDto.Payment.Expiration,
-                orderDto.Payment.CVV,
+                orderDto.Payment.Cvv,
                 orderDto.Payment.PaymentMethod);
             var newOrder = Order.CreateOrder(
-                id: OrderId.Of(orderDto.Id),
+                id: OrderId.Of(Guid.NewGuid()),
                 customerId: CustomerId.Of(orderDto.CustomerId),
                 orderName:OrderName.Of(orderDto.OrderName),
                 shippingAddress: shippingAddress,

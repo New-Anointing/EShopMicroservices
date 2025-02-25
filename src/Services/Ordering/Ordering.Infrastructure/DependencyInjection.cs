@@ -10,8 +10,7 @@ namespace Ordering.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices
             (this IServiceCollection services, IConfiguration configuration) =>
-            services
-            .AddDatabase(configuration);
+            services.AddDatabase(configuration);
 
         private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
