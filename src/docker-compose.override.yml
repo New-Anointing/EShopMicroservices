@@ -1,4 +1,6 @@
 services:
+
+  #resources configurations
   catalogDb:
     container_name: catalogDb
     environment:
@@ -10,6 +12,7 @@ services:
         - "5432:5432"
     volumes:
         - postgres_catalog:/var/lib/postgresql/data/ 
+
   basketDb:
     container_name: basketDb
     environment:
@@ -21,11 +24,13 @@ services:
         - "5433:5432"
     volumes:
         - postgres_basket:/var/lib/postgresql/data/  
+
   distributedCache:
     container_name: distributedCache
     restart:  always
     ports:
         - "6379:6379"
+
   orderDb:
     container_name: orderDb
     environment:
@@ -34,6 +39,21 @@ services:
     restart: always
     ports:
         - "1433:1433"
+
+  messagebroker:
+    container_name: messagebroker
+    hostname: ecommerce-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672" 
+
+
+
+   # api configurations
   catalogapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -48,6 +68,7 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
   basket.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

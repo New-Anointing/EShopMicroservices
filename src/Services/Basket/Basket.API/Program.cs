@@ -3,6 +3,8 @@ using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using BuildingBlocks.Messaging.MassTransit;
+using MassTransit;
+using BuildingBlocks.Messaging.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 //Add services to container

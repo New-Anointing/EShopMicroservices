@@ -1,4 +1,6 @@
 services:
+
+    #resources configurations
   catalogDb:
     image: postgres
   basketDb:
@@ -7,7 +9,10 @@ services:
     image: redis
   orderDb:
     image: mcr.microsoft.com/mssql/server
+  messagebroker:
+    image: rabbitmq:management
 
+    #api configurations
   catalogapi:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:

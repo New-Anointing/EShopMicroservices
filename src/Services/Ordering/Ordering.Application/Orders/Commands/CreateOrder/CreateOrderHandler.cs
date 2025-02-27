@@ -37,6 +37,8 @@
                 orderDto.Payment.Expiration,
                 orderDto.Payment.Cvv,
                 orderDto.Payment.PaymentMethod);
+
+
             var newOrder = Order.CreateOrder(
                 id: OrderId.Of(Guid.NewGuid()),
                 customerId: CustomerId.Of(orderDto.CustomerId),
